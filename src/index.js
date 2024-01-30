@@ -1,9 +1,14 @@
-let emailInput = document.getElementsByName("email").value
+let emailInput = document.getElementsByName("email")[0]
+let regForm = document.getElementById("registration")
 
-form.addEventListener("submit", validateForm)
+emailInput.addEventListener("change", validateEmail());
 
-function validateForm(){
-    if(emailInput.includes("@example.com")){
-        document.getElementsByName("email").setCustomValidity("Cannot use an @example.com address")
+function validateEmail(){
+    debugger
+    //Need help figuring out why this isn't detecting the email value?
+   console.log(typeof(emailInput.value))
+    if(emailInput.value.includes("@example.com")){
+        console.log("Incorrect")
+        return false
     }
 }
