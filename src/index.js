@@ -5,6 +5,7 @@ let username = regForm.elements["username"];
 let terms = regForm.elements["terms"];
 
 function showError(errItem, errMsg){
+    debugger
     let errorMsg = document.getElementById("errorDisplay")
     errItem.appendChild(errorMsg)
     errorMsg.style.display = "inline"
@@ -12,26 +13,12 @@ function showError(errItem, errMsg){
 
 }
 
-// password.addEventListener("change", function(){
-//     let pswd = password.value;
-//     let userID = username.value;
-//     validateInitialPassword(pswd, userID)
-// });
-
-// passwordCheck.addEventListener("change", function(){
-//     let pswd = password.value;
-//     let checkPswd = passwordCheck.value;
-//     let userID = username.value;
-//     validateInitialPassword(pswd, userID)
-//     validatePswdCheck(pswd, checkPswd)
-// })
-
 function validateInitialPassword(pstr,ustr){
    if(pstr.includes(ustr) || !regChex(pstr)){
-    debugger
     password.focus();
+    debugger
     if(pstr.includes(ustr)) {
-
+        showError(password, "Password cannot contain username")
     } else if (!regChex(pstr)){
 
     }
@@ -76,16 +63,13 @@ regForm.addEventListener("submit", function(event){
     let checkPswd = passwordCheck.value;
 
     if(!checkTOS()){
-        event.preventDefault()
-        return false
+        event.returnValue = false;
     }
-    else if(!validateInitialPassword(pswd, userID)){
-        event.preventDefault()
-        return false
+    if(!validateInitialPassword(pswd, userID)){
+        event.returnValue = false;
     }
-    else if(!validatePswdCheck(pswd, checkPswd)){
-        event.preventDefault()
-        return false
+    if(!validatePswdCheck(pswd, checkPswd)){
+        event.returnValue = false;
     }
     return true
 });
