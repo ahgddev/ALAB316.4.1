@@ -1,7 +1,8 @@
 let regForm = document.getElementById("registration");
 let password = regForm.elements["password"];
-let passwordCheck = regForm.elements["passwordCheck"]
-let terms = regForm.elements["terms"]
+let passwordCheck = regForm.elements["passwordCheck"];
+let username = regForm.elements["username"];
+let terms = regForm.elements["terms"];
 
 function showError(errItem, errMsg){
     let errorMsg = document.getElementById("errorDisplay")
@@ -11,18 +12,19 @@ function showError(errItem, errMsg){
 
 }
 
-password.addEventListener("change", function(){
-    let pswd = password.value
-    validateInitialPassword(pswd)
-});
+// password.addEventListener("change", function(){
+//     let pswd = password.value;
+//     let userID = username.value;
+//     validateInitialPassword(pswd, userID)
+// });
 
-passwordCheck.addEventListener("change", function(){
-    let userID = document.getElementsByName("username")[0].value
-    let pswd = password.value
-    let checkPswd = passwordCheck.value
-    validateInitialPassword(pswd, userID)
-    validatePswdCheck(pswd, checkPswd)
-})
+// passwordCheck.addEventListener("change", function(){
+//     let pswd = password.value;
+//     let checkPswd = passwordCheck.value;
+//     let userID = username.value;
+//     validateInitialPassword(pswd, userID)
+//     validatePswdCheck(pswd, checkPswd)
+// })
 
 function validateInitialPassword(pstr,ustr){
    if(pstr.includes(ustr) || !regChex(pstr)){
@@ -68,6 +70,22 @@ function checkTOS(){
     }
 }
 
-regForm.addEventListener("submit", function(){
-    checkTOS()
+regForm.addEventListener("submit", function(event){
+    let pswd = password.value;
+    let userID = username.value;
+    let checkPswd = passwordCheck.value;
+
+    if(!checkTOS()){
+        event.preventDefault()
+        return false
+    }
+    else if(!validateInitialPassword(pswd, userID)){
+        event.preventDefault()
+        return false
+    }
+    else if(!validatePswdCheck(pswd, checkPswd)){
+        event.preventDefault()
+        return false
+    }
+    return true
 });
