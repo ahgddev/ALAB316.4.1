@@ -7,20 +7,19 @@ let terms = regForm.elements["terms"];
 function showError(errItem, errMsg){
     debugger
     let errorMsg = document.getElementById("errorDisplay")
-    errItem.appendChild(errorMsg)
     errorMsg.style.display = "inline"
-    errMsg.innerHTML = `Error: ${errMsg}`
+    errorMsg.innerHTML = `Error: ${errMsg}`
+    errItem.parentNode.insertBefore(errorMsg, errItem.nextSibling);
 
 }
 
 function validateInitialPassword(pstr,ustr){
    if(pstr.includes(ustr) || !regChex(pstr)){
     password.focus();
-    debugger
     if(pstr.includes(ustr)) {
         showError(password, "Password cannot contain username")
     } else if (!regChex(pstr)){
-
+        showError(password, "Password needs to contain atleast 1 capital letter, 1 special character and 1 number")
     }
     return false
    } else {
@@ -31,6 +30,7 @@ function validateInitialPassword(pstr,ustr){
 function validatePswdCheck(pstr, pstrcheck){
     if(pstr != pstrcheck){
         passwordCheck.focus();
+        showError(password, "Passwords need to match")
         return false
     } else {
         return true
@@ -53,6 +53,7 @@ function checkTOS(){
         return true
     } else {
         terms.focus();
+        showError(password, "You need to agree to the Terms & Conditions")
         return false
     }
 }
