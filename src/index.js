@@ -1,14 +1,16 @@
-let emailInput = document.getElementsByName("email")[0]
+let passwordInput = document.getElementsByName("password")[0]
+let pswdCheck = document.getElementsByName("passwordCheck")[0]
 let regForm = document.getElementById("registration")
 
-emailInput.addEventListener("change", validateEmail());
+passwordInput.addEventListener("change", validateInitialPassword());
+pswdCheck.addEventListener("change", validatePswdCheck());
 
-function validateEmail(){
-    debugger
-    //Need help figuring out why this isn't detecting the email value?
-   console.log(typeof(emailInput.value))
-    if(emailInput.value.includes("@example.com")){
-        console.log("Incorrect")
-        return false
-    }
+function validateInitialPassword(){
+   let pswd = passwordInput.value
+
+   console.log(pswd)
+}
+
+function validatePswdCheck(){
+
 }
