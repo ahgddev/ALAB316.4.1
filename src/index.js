@@ -4,6 +4,11 @@ let passwordCheck = regForm.elements["passwordCheck"];
 let username = regForm.elements["username"];
 let terms = regForm.elements["terms"];
 
+let loginForm = document.getElementById("login");
+let loginUser = loginForm.elements["username"];
+let loginPassword = loginForm.elements["password"];
+let loginPersist = loginForm.elements["persist"];
+
 function showError(errItem, errMsg){
     debugger
     let errorMsg = document.getElementById("errorDisplay")
@@ -12,6 +17,13 @@ function showError(errItem, errMsg){
     errItem.parentNode.insertBefore(errorMsg, errItem.nextSibling);
 
 }
+
+username.addEventListener("input", function(){
+    username.required = true;
+    password.required = true;
+    passwordCheck.required = true;
+    terms.required = true;
+})
 
 function validateInitialPassword(pstr,ustr){
    if(pstr.includes(ustr) || !regChex(pstr)){
