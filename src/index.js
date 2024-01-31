@@ -1,16 +1,28 @@
-let passwordInput = document.getElementsByName("password")[0]
-let pswdCheck = document.getElementsByName("passwordCheck")[0]
 let regForm = document.getElementById("registration")
+let pswd = document.getElementsByName("password")[0].value
+let checkPswd = document.getElementsByName("passwordCheck")[0].value
 
-passwordInput.addEventListener("change", validateInitialPassword());
+document.getElementsByName("password")[0].addEventListener("change", function(){
+    validateInitialPassword()
+});
+
+document.getElementsByName("passwordCheck")[0].addEventListener("change", function(){
+    validatePswdCheck()
+})
+
 pswdCheck.addEventListener("change", validatePswdCheck());
 
-function validateInitialPassword(){
-   let pswd = passwordInput.value
 
-   console.log(pswd)
+function validateInitialPassword(){
+   if(str){
+    
+   }
 }
 
 function validatePswdCheck(){
-
+    if(pswd != checkPswd){
+        return false
+    } else {
+        return true
+    }
 }
