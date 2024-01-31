@@ -88,13 +88,23 @@ regForm.addEventListener("submit", function(event){
         event.returnValue = false;
     }
     alert("Registration complete!")
+    localStorage.setItem("user", userID);
+    localStorage.setItem("password", pswd);
+
     return true
 });
 
 loginForm.addEventListener("submit", function(){
-    if(loginPersist.checked == true){
-        alert("Login success! Login remembered.")
-    } else {
-        alert("Login success!")
+    let savedUser = localStorage.getItem("user");
+    let savedPass = localStorage.getItem("password");
+
+    if(savedUser != null && savedPass != null){
+        if(loginPersist.checked == true){
+            alert("Login success! Login remembered.")
+        } else {
+            alert("Login success!")
+        }
+    } else if (savedUser == null || savedPass == null){
+        alert("Username/Password combination does not exist...")
     }
 });
