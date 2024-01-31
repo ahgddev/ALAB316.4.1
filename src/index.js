@@ -1,5 +1,12 @@
 let regForm = document.getElementById("registration")
 
+function showError(errItem, errMsg){
+    let errorMsg = document.getElementById("errorDisplay")
+    errorMsg.style.display = "inline"
+    errMsg.innerHTML = `Error: ${errMsg}`
+
+}
+
 document.getElementsByName("password")[0].addEventListener("change", function(){
     let pswd = document.getElementsByName("password")[0].value
     validateInitialPassword(pswd)
@@ -49,6 +56,5 @@ function checkTOS(){
 }
 
 regForm.addEventListener("submit", function(){
-    debugger
     checkTOS()
 });
