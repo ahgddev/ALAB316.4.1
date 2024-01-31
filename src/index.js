@@ -15,20 +15,16 @@ document.getElementsByName("passwordCheck")[0].addEventListener("change", functi
 
 function validateInitialPassword(pstr,ustr){
    if(pstr.includes(ustr) || !regChex(pstr)){
-    console.log("WRONG user")
        return false
    } else {
-    console.log("NO user")
     return true
    }
 }
 
 function validatePswdCheck(pstr, pstrcheck){
     if(pstr != pstrcheck){
-        console.log("Check and Origin do not match!")
         return false
     } else {
-        console.log("No user")
         return true
     }
 }
@@ -38,10 +34,21 @@ function regChex(str){
     let letterCheck = new RegExp('.*([a-z]*[A-Z]*[0-9]).*');
 
     if(specialCheck.test(str) && letterCheck.test(str)){
-        console.log("Correct")
         return true
     } else {
-        console.log("Failed test!")
         return false
     }
 }
+
+function checkTOS(){
+    if(document.getElementsByName("terms")[0].checked){
+        return true
+    } else {
+        return false
+    }
+}
+
+regForm.addEventListener("submit", function(){
+    debugger
+    checkTOS()
+});
