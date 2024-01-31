@@ -10,12 +10,10 @@ let loginPassword = loginForm.elements["password"];
 let loginPersist = loginForm.elements["persist"];
 
 function showError(errItem, errMsg){
-    debugger
     let errorMsg = document.getElementById("errorDisplay")
     errorMsg.style.display = "inline"
     errorMsg.innerHTML = `Error: ${errMsg}`
     errItem.parentNode.insertBefore(errorMsg, errItem.nextSibling);
-
 }
 
 username.addEventListener("input", function(){
@@ -23,7 +21,12 @@ username.addEventListener("input", function(){
     password.required = true;
     passwordCheck.required = true;
     terms.required = true;
-})
+});
+
+loginUser.addEventListener("input", function(){
+    loginUser.required = true;
+    loginPassword.required = true;
+});
 
 function validateInitialPassword(pstr,ustr){
    if(pstr.includes(ustr) || !regChex(pstr)){
@@ -84,5 +87,14 @@ regForm.addEventListener("submit", function(event){
     if(!validatePswdCheck(pswd, checkPswd)){
         event.returnValue = false;
     }
+    alert("Registration complete!")
     return true
+});
+
+loginForm.addEventListener("submit", function(){
+    if(loginPersist.checked == true){
+        alert("Login success! Login remembered.")
+    } else {
+        alert("Login success!")
+    }
 });
